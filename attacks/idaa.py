@@ -108,7 +108,6 @@ class IDAA(Attack):
                     ent_cost = -self.gamma * pred_loss(logits, neg_labels)
                     
                     cost = pred_cost + ent_cost
-                    # cost = pred_cost
 
                 grad = torch.autograd.grad(cost, deltas, 
                     retain_graph=False, create_graph=False)[0]

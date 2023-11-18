@@ -70,7 +70,7 @@ class MySelf:
         return imgs
 
 class RandomLocalMix:
-    def __init__(self, mix_num=1, alpha=0.4, ratio=0.7):
+    def __init__(self, mix_num=3, alpha=0.4, ratio=0.7):
         self.mix_num = mix_num
         self.alpha = alpha
         self.ratio = ratio
@@ -86,7 +86,6 @@ class RandomLocalMix:
                 lam = np.random.beta(self.alpha, self.alpha)
                 lam = max(lam, 1 - lam)
 
-                # (1 - lam) * new_imgs[i][:, bbx3:bbx4, bby3:bby4]
                 bbx1, bby1, bbx2, bby2 = self.rand_bbox(sz, lam)
                 bbx3, bby3, bbx4, bby4 = self.rand_bbox(sz, lam, bbx2-bbx1, bby2-bby1)
                 out_imgs[i][:, bbx1:bbx2, bby1:bby2] = lam * out_imgs[i][:, bbx1:bbx2, bby1:bby2] + \
@@ -98,7 +97,6 @@ class RandomLocalMix:
         W = size[2]
         H = size[3]
         if ws is None or hs is None:
-            # cut_rat = np.sqrt(1. - lam)
             cut_rat = self.ratio 
             cut_w = np.int32(W * cut_rat)
             cut_h = np.int32(H * cut_rat)
