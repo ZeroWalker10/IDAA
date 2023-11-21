@@ -9,5 +9,5 @@ This is the implementation for IDAA
 - configure locates in `idaa_test/configure.py`
 - model zoo locates in `idaa_test/model_zoo.py`
 - dataset zoo locates in `idaa_test/dataset_zoo.py`
-- environment configure locates in `idaa_test/env.yml`
+- environment configure locates in `env/env.yml`
 ```
